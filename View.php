@@ -6,30 +6,30 @@
  * @author Sergey Romanenko <awilum@yandex.ru>
  * @link http://components.flextype.org
  *
- * For the full copyright and license information, please template the LICENSE
+ * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Flextype\Component\Template;
+namespace Flextype\Component\View;
 
-class Template
+class View
 {
     /**
-     * Path to template file.
+     * Path to view file.
      *
      * @var string
      */
-    protected $template_file;
+    protected $view_file;
 
     /**
-     * Template variables.
+     * View variables.
      *
      * @var array
      */
     protected $vars = [];
 
     /**
-     * Global template variables.
+     * Global view variables.
      *
      * @var array
      */
@@ -43,89 +43,89 @@ class Template
     protected $output;
 
     /**
-     * Template extension.
+     * View extension.
      *
      * @var string
      */
-    public static $template_ext = '.php';
+    public static $view_ext = '.php';
 
     /**
-     * Create a new template object.
+     * Create a new view object.
      *
-     * // Create new template object
-     * $template = new Template('blog/templates/backend/index');
+     * // Create new view object
+     * $view = new View('blog/views/backend/index');
      *
      * // Assign some new variables
-     * $template->assign('msg', 'Some message...');
+     * $view->assign('msg', 'Some message...');
      *
-     * // Get template
-     * $output = $template->render();
+     * // Get view
+     * $output = $view->render();
      *
-     * // Display template
+     * // Display view
      * echo $output;
      *
-     * @param string $template      Name of the template file
-     * @param array  $variables Array of template variables
+     * @param string $view      Name of the view file
+     * @param array  $variables Array of view variables
      */
-    public function __construct(string $template, array $variables = [])
+    public function __construct(string $view, array $variables = [])
     {
-        // Is template file exists ?
-        if (!file_exists($template . Template::$template_ext)) {
-            throw new RuntimeException(vsprintf("%s(): The '%s' template does not exist.", array(__METHOD__, $template)));
+        // Is view file exists ?
+        if (!file_exists($view . View::$view_ext)) {
+            throw new RuntimeException(vsprintf("%s(): The '%s' view does not exist.", array(__METHOD__, $view)));
         }
 
-        // Set template file
-        $this->template_file = $template . Template::$template_ext;
+        // Set view file
+        $this->view_file = $view . View::$view_ext;
 
-        // Set template variables
+        // Set view variables
         $this->vars = $variables;
     }
 
     /**
-     * Template factory
+     * View factory
      *
-     * // Create new template object, assign some variables
-     * // and displays the rendered template in the browser.
-     * Template::factory('blog/templates/backend/index')
+     * // Create new view object, assign some variables
+     * // and displays the rendered view in the browser.
+     * View::factory('blog/views/backend/index')
      *     ->assign('msg', 'Some message...')
      *     ->display();
      *
-     * @param  string $template      Name of the template file
-     * @param  array  $variables Array of template variables
-     * @return Template
+     * @param  string $view      Name of the view file
+     * @param  array  $variables Array of view variables
+     * @return View
      */
-    public static function factory(string $template, array $variables = [])
+    public static function factory(string $view, array $variables = [])
     {
-        return new Template($template, $variables);
+        return new View($view, $variables);
     }
 
     /**
-     * Assign a template variable.
+     * Assign a view variable.
      *
-     * $template->assign('msg', 'Some message...');
+     * $view->assign('msg', 'Some message...');
      *
      * @param  string  $key    Variable name
      * @param  mixed   $value  Variable value
-     * @param  boolean $global Set variable available in all templates
-     * @return Template
+     * @param  bool $global Set variable available in all views
+     * @return View
      */
     public function assign(string $key, $value, bool $global = false)
     {
-        // Assign a new template variable (global or locale)
+        // Assign a new view variable (global or locale)
         if ($global === false) {
             $this->vars[$key] = $value;
         } else {
-            Template::$global_vars[$key] = $value;
+            View::$global_vars[$key] = $value;
         }
 
         return $this;
     }
 
     /**
-     * Include the template file and extracts the template variables before returning the generated output.
+     * Include the view file and extracts the view variables before returning the generated output.
      *
-     * // Get template
-     * $output = $template->render();
+     * // Get view
+     * $output = $view->render();
      *
      * // Display output
      * echo $output;
@@ -139,13 +139,13 @@ class Template
         if (empty($this->output)) {
 
             // Extract variables as references
-            extract(array_merge($this->vars, Template::$global_vars), EXTR_REFS);
+            extract(array_merge($this->vars, View::$global_vars), EXTR_REFS);
 
             // Turn on output buffering
             ob_start();
 
-            // Include template file
-            include($this->template_file);
+            // Include view file
+            include($this->view_file);
 
             // Output...
             $this->output = ob_get_clean();
@@ -161,9 +161,9 @@ class Template
     }
 
     /**
-     * Displays the rendered template in the browser.
+     * Displays the rendered view in the browser.
      *
-     * $template->display();
+     * $view->display();
      *
      */
     public function display()
@@ -172,7 +172,7 @@ class Template
     }
 
     /**
-     * Magic setter method that assigns a template variable.
+     * Magic setter method that assigns a view variable.
      *
      * @param string $key   Variable name
      * @param mixed  $value Variable value
@@ -183,7 +183,7 @@ class Template
     }
 
     /**
-     * Magic getter method that returns a template variable.
+     * Magic getter method that returns a view variable.
      *
      * @param  string $key Variable name
      * @return mixed
@@ -196,18 +196,18 @@ class Template
     }
 
     /**
-     * Magic isset method that checks if a template variable is set.
+     * Magic isset method that checks if a view variable is set.
      *
      * @param  string  $key Variable name
-     * @return boolean
+     * @return bool
      */
-    public function __isset(string $key)
+    public function __isset(string $key) : bool
     {
         return isset($this->vars[$key]);
     }
 
     /**
-     * Magic unset method that unsets a template variable.
+     * Magic unset method that unsets a view variable.
      *
      * @param string $key Variable name
      */
@@ -217,7 +217,7 @@ class Template
     }
 
     /**
-     * Method that magically converts the template object into a string.
+     * Method that magically converts the view object into a string.
      *
      * @return string
      */

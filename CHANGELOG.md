@@ -1,3 +1,6 @@
+# v1.1.0, 2018-04-26
+* Infrastructure changes
+
 # v1.0.1, 2018-04-25
 * fix for $template_ext variable
 

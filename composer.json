@@ -1,10 +1,10 @@
 {
-  "name": "flextype-components/template",
-  "keywords": ["template", "template engine", "php", "templating", "views"],
+  "name": "flextype-components/view",
+  "keywords": ["php", "views"],
   "type": "library",
   "license": "MIT",
-  "homepage": "https://github.com/flextype-components/template",
-  "description": "Template Component provides basic methods for displaying PHP views/templates.",
+  "homepage": "https://github.com/flextype-components/view",
+  "description": "View Component provides basic methods for displaying PHP views.",
   "authors": [
     {
         "name": "Sergey Romanenko",
@@ -12,12 +12,12 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/flextype-components/template/issues"
+    "issues": "https://github.com/flextype-components/view/issues"
   },
   "require": {
       "php": "^7.1.3"
   },
   "autoload": {
-      "psr-4": { "Flextype\\Component\\Template\\": "" }
+      "psr-4": { "Flextype\\Component\\View\\": "" }
   }
 }
