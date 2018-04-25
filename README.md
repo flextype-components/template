@@ -18,38 +18,38 @@ use Flextype\Component\Template\Template;
 
 Create a new template object and render it.
 ```php
-// Create new view object
+// Create new template object
 $template = new Template('blog/templates/backend/index');
 
 // Assign some new variables
 $template->assign('msg', 'Some message...');
 
-// Get view
+// Get template
 $output = $template->render();
 
-// Display view
+// Display template
 echo $output;
 ```
 
 Template factory  
-Create new view object, assign some variables
-and displays the rendered view in the browser.
+Create new template object, assign some variables
+and displays the rendered template in the browser.
 ```php
 Template::factory('blog/templates/backend/index')
      ->assign('msg', 'Some message...')
      ->display();
 ```
 
-Include the view file and extracts the view variables before returning the generated output.
+Include the template file and extracts the template variables before returning the generated output.
 ```php
-// Get view
+// Get template
 $output = $template->render();
 
 // Display output
 echo $output;
 ```
 
-Displays the rendered view in the browser.
+Displays the rendered template in the browser.
 ```php
 $template->display();
 ```
