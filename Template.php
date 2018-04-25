@@ -22,13 +22,6 @@ class Template
     protected $template_file;
 
     /**
-     * Template extension.
-     *
-     * @var string
-     */
-    protected static $template_ext = '.php';
-
-    /**
      * Template variables.
      *
      * @var array
@@ -48,6 +41,13 @@ class Template
      * @var string
      */
     protected $output;
+
+    /**
+     * Template extension.
+     *
+     * @var string
+     */
+    public static $template_ext = '.php';
 
     /**
      * Create a new template object.
@@ -70,12 +70,12 @@ class Template
     public function __construct(string $template, array $variables = [])
     {
         // Is template file exists ?
-        if (!file_exists($template . Template::template_ext)) {
+        if (!file_exists($template . Template::$template_ext)) {
             throw new RuntimeException(vsprintf("%s(): The '%s' template does not exist.", array(__METHOD__, $template)));
         }
 
         // Set template file
-        $this->template_file = $template . Template::template_ext;
+        $this->template_file = $template . Template::$template_ext;
 
         // Set template variables
         $this->vars = $variables;

@@ -4,7 +4,7 @@
   "type": "library",
   "license": "MIT",
   "homepage": "https://github.com/flextype-components/template",
-  "description": "Template Component provides basic template engine for native PHP templates",
+  "description": "Template Component provides basic methods for displaying PHP views/templates.",
   "authors": [
     {
         "name": "Sergey Romanenko",

@@ -1,8 +1,8 @@
 # Template Component
-![version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg?style=flat-square "Version")
+![version](https://img.shields.io/badge/version-1.0.1-brightgreen.svg?style=flat-square "Version")
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/flextype-components/template/blob/master/LICENSE)
 
-Template Component provides basic template engine for native PHP templates.
+Template Component provides basic methods for displaying PHP views/templates.
 
 ### Installation
 
