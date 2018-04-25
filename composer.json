@@ -1,0 +1,23 @@
+{
+  "name": "flextype-components/template",
+  "keywords": ["template", "template engine", "php", "templating", "views"],
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/flextype-components/template",
+  "description": "Template Component provides basic template engine for native PHP templates",
+  "authors": [
+    {
+        "name": "Sergey Romanenko",
+        "email": "awilum@yandex.ru"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/flextype-components/template/issues"
+  },
+  "require": {
+      "php": "^7.1.3"
+  },
+  "autoload": {
+      "psr-4": { "Flextype\\Component\\Template\\": "" }
+  }
+}
