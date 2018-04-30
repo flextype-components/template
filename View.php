@@ -71,7 +71,7 @@ class View
     {
         // Is view file exists ?
         if (!file_exists($view . View::$view_ext)) {
-            throw new RuntimeException(vsprintf("%s(): The '%s' view does not exist.", array(__METHOD__, $view)));
+            throw new \RuntimeException(vsprintf("%s(): The '%s' view does not exist.", array(__METHOD__, $view)));
         }
 
         // Set view file
